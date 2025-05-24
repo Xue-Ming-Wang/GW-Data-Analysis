@@ -1,1 +1,2 @@
 # GW-Data-Analysis
+This data analysis course focuses on applying statistical methods using computerized procedures, particularly SAS and Python. The course covers essential techniques such as linear and multiple regression, contingency tables, logistic regression, and generalized linear models. Additionally, it explores advanced topics like clustering and support vector machines (SVM). Emphasizing practical applications, the course equips students with the skills to analyze and interpret data effectively using industry-standard software tools.
