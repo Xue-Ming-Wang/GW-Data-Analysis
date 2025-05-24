@@ -1,0 +1,111 @@
+---
+title: "6210 hw1"
+author: "Xue Ming Wang(G20580112)"
+date: "2023-02-12"
+output: html_document
+---
+
+```{r}
+hwa <- read.csv(file = 'HW1a.csv')
+head(hwa)
+hwa$Y <- factor(hwa$Y)
+hwa$Z <- factor(hwa$Z)
+str(hwa)
+summary(hwa)
+```
+
+```{r}
+# X-axis grid
+x2 <- seq(min(hwa$X), max(hwa$X), length = 40)
+
+# Normal curve
+fun <- dnorm(x2, mean = mean(hwa$X), sd = sd(hwa$X))
+
+# Histogram
+hist(hwa$X, prob = TRUE, col = "white",
+     ylim = c(0, max(fun)),
+     main = "Histogram of Variable X", xlab="X")
+lines(x2, fun, col = 2, lwd = 2)
+```
+
+```{r}
+hist(hwa$X)
+qqnorm(hwa$X)
+qqline(hwa$X)
+```
+
+```{r}
+y0 <- subset(hwa,Y==0) 
+y1 <- subset(hwa,Y==1)
+y2 <- subset(hwa,Y==2) 
+```
+
+```{r}
+library(ggplot2) 
+ggplot()+ geom_boxplot(data=hwa, aes(x=Y, y=X))+
+  labs(
+    title = "Boxplot of variable X with different Y values",
+    caption = "Figure 4. Boxplot of variable X with different Y values",
+  ) 
+
+```
+
+```{r}
+library(ggplot2) 
+ggplot()+ geom_boxplot(data=hwa, aes(x=Z, y=X))+
+  labs(
+    title = "Boxplot of variable X with different Z values",
+    caption = "Figure 6. Boxplot of variable x with different Z values",
+  ) 
+
+```
+
+```{r}
+ggplot(hwa, aes(x = X, fill = Y)) + 
+  geom_histogram(bins=25)
+```
+
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+hwb <- read.csv(file = 'HW1b.csv')
+head(hwb)
+hwb$Y <- factor(hwb$Y)
+hwb$X <- factor(hwb$X)
+str(hwb)
+summary(hwb)
+```
+```{r}
+library(ggplot2)
+library(reshape2)
+
+ggplot(data=hwb, aes(x=X, y=Z)) +
+  geom_bar(stat="identity") 
+```
+```{r}
+ggplot(hwb, aes(x = Y, y = Z, fill = X, label = Z)) + 
+  geom_bar(width = 0.5, stat = "identity")+
+  geom_text(size = 3, position = position_stacknudge(y = -60))
+```
+```{r}
+
+library(ggplot2)
+
+```
+```{r}
+p <- ggplot(hwb, aes(fill=X, y=Z, x=X, z =2,
+                 extrude_face_fill = condition)) + 
+    geom_bar_z(position="stack", stat="identity", width = 0.3, extrude = TRUE,
+               color = "black") + 
+  theme_classic()
+
+devoutrgl::rgldev()
+p
+invisible(dev.off())
+```
+
+
